@@ -11,7 +11,7 @@ ret,frame = cap.read()
 original_height, original_width, _ = frame.shape
 aspect_ratio = original_height / original_width
 
-new_width= 300
+new_width= 640
 new_height= int(new_width * aspect_ratio)
 
 
