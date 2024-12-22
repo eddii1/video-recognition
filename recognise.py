@@ -7,7 +7,7 @@ ret, frame = cap.read()
 original_height, original_width, channels = frame.shape
 aspect_ratio = original_height / original_width
 
-new_width= 300
+new_width= 1020
 new_height= int(new_width * aspect_ratio)
 
 mp_pose = mp.solutions.pose
@@ -36,7 +36,25 @@ else:
                 resized_frame, results.pose_landmarks, mp_pose.POSE_CONNECTIONS
             )
 
-        cv2.imshow("Video Frame", resized_frame)
+        umar_stang = results.pose_landmarks.landmark[11]
+
+        x_pixel = int(umar_stang.x * new_width)
+        y_pixel = int(umar_stang.y * new_height)
+
+        cv2.putText(
+            resized_frame,                      # Image to draw on
+            f"Umar Stang: (x:{x_pixel}, y:{y_pixel})",                      # Text
+            (50, 100),                  # Bottom-left corner of the text
+            cv2.FONT_HERSHEY_COMPLEX,   # Font type
+            1.5,                        # Font scale
+            (255, 255, 255),            # Color (white)
+            3,                          # Thickness
+            cv2.LINE_AA                 # Line type (anti-aliased)
+        )
+
+        cv2.circle(resized_frame, (x_pixel, y_pixel), 15, (0,255,0), -1)
+
+        cv2.imshow("Algoritm Recunoastere Video", resized_frame)
 
         if cv2.waitKey(30) == 27:
             break

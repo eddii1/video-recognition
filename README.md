@@ -6,7 +6,7 @@ This project ............
 
 1. Clone this repository:
 
-git clone ..........
+git clone https://github.com/eddii1/video-recognition
 
 2. Install dependencies:
 
